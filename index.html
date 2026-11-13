@@ -1,0 +1,1210 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="CYBORG — The Future of Humanity. Next-generation human augmentation, neural cybernetics, and artificial intelligence co-processing.">
+  <title>CYBORG — The Future of Humanity</title>
+  
+  <!-- Favicon -->
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><polygon points='50,5 95,30 95,70 50,95 5,70 5,30' fill='%2305050a' stroke='%2300f0ff' stroke-width='6'/><circle cx='50' cy='50' r='18' fill='%23a855f7'/><circle cx='50' cy='50' r='8' fill='%2300f0ff'/></svg>">
+  
+  <!-- Google Fonts: Orbitron (Display), Rajdhani (Cyber Tech), Space Grotesk / Inter (Clean Body) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600;700;900&family=Rajdhani:wght@400;500;600;700&family=Space+Grotesk:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+  
+  <!-- Font Awesome 6 Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+  <!-- Main Stylesheet -->
+  <link rel="stylesheet" href="style.css">
+</head>
+<body class="cyber-body">
+
+  <!-- Background Cyber Particle Canvas -->
+  <canvas id="cyber-canvas" aria-hidden="true"></canvas>
+  <div class="scanline-overlay" aria-hidden="true"></div>
+  <div class="cyber-grid-plane" aria-hidden="true"></div>
+
+  <!-- Top System Telemetry Bar -->
+  <aside class="telemetry-ticker-bar" aria-label="System Telemetry">
+    <div class="ticker-content">
+      <span class="ticker-item"><i class="fa-solid fa-circle-dot live-blink"></i> PROTOCOL: OMEGA-7</span>
+      <span class="ticker-divider">/</span>
+      <span class="ticker-item"><i class="fa-solid fa-microchip"></i> QUANTUM NODES: 2,048 ONLINE</span>
+      <span class="ticker-divider">/</span>
+      <span class="ticker-item"><i class="fa-solid fa-bolt"></i> SYNAPSE LATENCY: <span id="ticker-latency">0.08</span>ms</span>
+      <span class="ticker-divider">/</span>
+      <span class="ticker-item"><i class="fa-solid fa-shield-halved"></i> NEURAL ENCRYPTION: 4096-QBIT</span>
+      <span class="ticker-divider">/</span>
+      <span class="ticker-item"><i class="fa-solid fa-satellite-dish"></i> SYNC STATUS: OPTIMAL</span>
+      <span class="ticker-divider">/</span>
+      <span class="ticker-item" id="ticker-time"><i class="fa-regular fa-clock"></i> UTC 00:00:00</span>
+    </div>
+  </aside>
+
+  <!-- Section 1: Navigation Bar -->
+  <header class="cyber-header" id="navbar">
+    <div class="nav-container">
+      <a href="#hero" class="brand-logo" aria-label="CYBORG Homepage">
+        <div class="logo-emblem">
+          <svg viewBox="0 0 40 40" class="logo-svg" aria-hidden="true">
+            <polygon points="20,2 38,12 38,28 20,38 2,28 2,12" class="hex-outer" />
+            <polygon points="20,7 33,15 33,25 20,33 7,25 7,15" class="hex-inner" />
+            <circle cx="20" cy="20" r="5" class="core-glow" />
+            <line x1="20" y1="2" x2="20" y2="12" class="circuit-line" />
+            <line x1="38" y1="28" x2="29" y2="23" class="circuit-line" />
+            <line x1="2" y1="28" x2="11" y2="23" class="circuit-line" />
+          </svg>
+          <div class="logo-pulse"></div>
+        </div>
+        <div class="brand-text">
+          <span class="brand-name">CYBORG</span>
+          <span class="brand-sub">HUMANITY // 2.0</span>
+        </div>
+      </a>
+
+      <!-- Desktop Navigation Links -->
+      <nav class="cyber-nav" aria-label="Main Navigation">
+        <ul class="nav-menu" id="nav-menu">
+          <li class="nav-item"><a href="#hero" class="nav-link active"><span class="nav-idx">00</span>OVERVIEW</a></li>
+          <li class="nav-item"><a href="#about" class="nav-link"><span class="nav-idx">01</span>GENESIS</a></li>
+          <li class="nav-item"><a href="#features" class="nav-link"><span class="nav-idx">02</span>AI & ROBOTICS</a></li>
+          <li class="nav-item"><a href="#neural-tech" class="nav-link"><span class="nav-idx">03</span>NEURAL ANATOMY</a></li>
+          <li class="nav-item"><a href="#stats" class="nav-link"><span class="nav-idx">04</span>METRICS</a></li>
+          <li class="nav-item"><a href="#suites" class="nav-link"><span class="nav-idx">05</span>SUITES</a></li>
+          <li class="nav-item"><a href="#contact" class="nav-link"><span class="nav-idx">06</span>UPLINK</a></li>
+        </ul>
+      </nav>
+
+      <!-- Nav Controls: Cyber Audio Toggle & CTA -->
+      <div class="nav-actions">
+        <button type="button" class="audio-toggle-btn" id="audio-toggle" aria-label="Toggle Cybernetic Audio Effects" title="Enable Cyber Audio Engine">
+          <span class="audio-bars">
+            <span class="bar bar-1"></span>
+            <span class="bar bar-2"></span>
+            <span class="bar bar-3"></span>
+          </span>
+          <span class="audio-label" id="audio-label">FX: OFF</span>
+        </button>
+
+        <button type="button" class="btn btn-cyber-outline nav-cta-btn" id="open-sync-modal" aria-haspopup="dialog">
+          <span class="btn-text">INITIALIZE LINK</span>
+          <span class="btn-glare"></span>
+          <span class="corner corner-tl"></span>
+          <span class="corner corner-br"></span>
+        </button>
+
+        <!-- Mobile Navigation Toggle -->
+        <button type="button" class="nav-toggle" id="nav-toggle" aria-label="Open Mobile Menu" aria-expanded="false" aria-controls="nav-menu">
+          <span class="hamburger-line"></span>
+          <span class="hamburger-line"></span>
+          <span class="hamburger-line"></span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <main id="main-content">
+
+    <!-- Section 2: Hero Section -->
+    <section class="hero-section" id="hero">
+      <div class="hero-backdrop-glow"></div>
+      
+      <div class="container hero-container">
+        <!-- Hero Text Column -->
+        <div class="hero-content reveal-on-scroll">
+          <div class="cyber-badge">
+            <span class="badge-dot"></span>
+            <span class="badge-text">SYNTHETIC EVOLUTION // PHASE IV ACTIVE</span>
+            <span class="badge-code">SYS.909</span>
+          </div>
+
+          <h1 class="hero-title">
+            <span class="glitch-wrapper" data-text="CYBORG">CYBORG</span>
+            <span class="title-sub-gradient">THE FUTURE OF HUMANITY</span>
+          </h1>
+
+          <p class="hero-description">
+            Transcending biological limitations through quantum neural integration, hyper-dense synthetic musculature, and artificial cognitive co-processing. Welcome to the dawn of Homo Technologicus.
+          </p>
+
+          <div class="hero-cta-group">
+            <a href="#suites" class="btn btn-cyber-primary">
+              <span class="btn-icon"><i class="fa-solid fa-microchip"></i></span>
+              <span class="btn-text">EXPLORE AUGMENTATIONS</span>
+              <span class="btn-glare"></span>
+              <span class="corner corner-tl"></span>
+              <span class="corner corner-br"></span>
+            </a>
+            
+            <a href="#neural-tech" class="btn btn-cyber-glass">
+              <span class="btn-icon"><i class="fa-solid fa-atom"></i></span>
+              <span class="btn-text">INSPECT NEURAL CORE</span>
+              <span class="btn-glare"></span>
+              <span class="corner corner-tl"></span>
+              <span class="corner corner-br"></span>
+            </a>
+          </div>
+
+          <!-- Hero Telemetry Cards -->
+          <div class="hero-telemetry-row">
+            <div class="telemetry-card">
+              <div class="tc-header">
+                <span class="tc-label">SYNAPTIC SYNCHRONY</span>
+                <span class="tc-val">99.98%</span>
+              </div>
+              <div class="cyber-progress-bar">
+                <div class="cpb-fill" style="width: 99.98%"></div>
+              </div>
+              <div class="tc-sub">Quantum Co-Processor: Online</div>
+            </div>
+
+            <div class="telemetry-card">
+              <div class="tc-header">
+                <span class="tc-label">MYOMER OUTPUT</span>
+                <span class="tc-val">12.4 kN</span>
+              </div>
+              <div class="cyber-progress-bar">
+                <div class="cpb-fill cpb-purple" style="width: 92%"></div>
+              </div>
+              <div class="tc-sub">Carbon-Nanotube Actuation</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Hero Visual / 3D Cyborg Hologram Column -->
+        <div class="hero-visual reveal-on-scroll">
+          <div class="hologram-stage" id="hero-hologram">
+            <!-- HUD Ambient Elements -->
+            <div class="hud-reticle-outer" aria-hidden="true"></div>
+            <div class="hud-reticle-inner" aria-hidden="true"></div>
+            <div class="hud-compass" aria-hidden="true">
+              <span>N</span><span>E</span><span>S</span><span>W</span>
+            </div>
+            
+            <!-- Laser Scanline Animation -->
+            <div class="scanner-beam" aria-hidden="true"></div>
+
+            <!-- Futuristic Cyborg Image Frame with Fallback/Overlay -->
+            <div class="cyborg-image-frame">
+              <img 
+                src="https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?auto=format&fit=crop&w=1000&q=85" 
+                alt="Cybernetic Android with Neural Synapses and Neon Augmentations"
+                class="cyborg-hero-img"
+                id="cyborg-img"
+                loading="eager"
+                onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1578632767115-351597cf2477?auto=format&fit=crop&w=1000&q=85';"
+              >
+              
+              <!-- Cybernetic SVG HUD Overlay onto Image -->
+              <svg class="cyborg-hud-overlay" viewBox="0 0 500 600" preserveAspectRatio="none" aria-hidden="true">
+                <!-- Target Reticles -->
+                <circle cx="250" cy="190" r="45" class="hud-target-ring hud-pulsing" />
+                <circle cx="250" cy="190" r="15" class="hud-target-core" />
+                <line x1="180" y1="190" x2="320" y2="190" class="hud-target-cross" />
+                <line x1="250" y1="120" x2="250" y2="260" class="hud-target-cross" />
+                
+                <!-- Ocular Diagnostics Callout -->
+                <polyline points="295,190 350,150 430,150" class="hud-bracket-line" />
+                <rect x="350" y="125" width="130" height="22" class="hud-tag-bg" />
+                <text x="360" y="140" class="hud-tag-text">OPTIC.V8 // 120 FPS</text>
+
+                <!-- Cranial Core Callout -->
+                <polyline points="205,170 140,130 60,130" class="hud-bracket-line" />
+                <rect x="20" y="105" width="120" height="22" class="hud-tag-bg" />
+                <text x="30" y="120" class="hud-tag-text">NEURAL LINK // 99%</text>
+
+                <!-- Core Chassis Callout -->
+                <polyline points="250,380 320,430 420,430" class="hud-bracket-line" />
+                <rect x="320" y="435" width="140" height="22" class="hud-tag-bg" />
+                <text x="330" y="450" class="hud-tag-text">SUB-DERMAL MYOMER</text>
+              </svg>
+
+              <!-- Corner Cyber Brackets -->
+              <span class="hud-corner-bracket bracket-tl"></span>
+              <span class="hud-corner-bracket bracket-tr"></span>
+              <span class="hud-corner-bracket bracket-bl"></span>
+              <span class="hud-corner-bracket bracket-br"></span>
+            </div>
+
+            <!-- Floating Interactive HUD Pills -->
+            <div class="floating-hud-badge badge-cortex" data-speed="1.2">
+              <i class="fa-solid fa-brain-circuit"></i>
+              <div class="hud-pill-data">
+                <span class="hp-title">SYNAPSE AI</span>
+                <span class="hp-value">CO-PROCESSING</span>
+              </div>
+            </div>
+
+            <div class="floating-hud-badge badge-shield" data-speed="0.8">
+              <i class="fa-solid fa-shield-virus"></i>
+              <div class="hud-pill-data">
+                <span class="hp-title">NANITE MATRIX</span>
+                <span class="hp-value">AUTO-REPAIR</span>
+              </div>
+            </div>
+
+            <div class="floating-hud-badge badge-fusion" data-speed="1.5">
+              <i class="fa-solid fa-ring"></i>
+              <div class="hud-pill-data">
+                <span class="hp-title">MICRO-CORE</span>
+                <span class="hp-value">PERPETUAL</span>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </div>
+
+      <!-- Scroll Indicator -->
+      <a href="#about" class="scroll-down-indicator" aria-label="Scroll to Genesis section">
+        <span class="scroll-track"><span class="scroll-laser"></span></span>
+        <span class="scroll-label">SCROLL TO INITIALIZE</span>
+      </a>
+    </section>
+
+    <!-- Section 3: About Cyborg Technology -->
+    <section class="section about-section" id="about">
+      <div class="container">
+        <div class="section-header text-center reveal-on-scroll">
+          <div class="section-tag"><i class="fa-solid fa-dna"></i> 01 // THE TRANSCENDENCE</div>
+          <h2 class="section-title">BRIDGING BIOLOGY AND SILICON</h2>
+          <p class="section-subtitle">
+            Carbon biology evolved over billions of years, but its limits are reached. We engineer the seamless synthesis of human consciousness with cybernetic resilience.
+          </p>
+        </div>
+
+        <!-- Interactive Evolution Tabs -->
+        <div class="evolution-container reveal-on-scroll">
+          <div class="cyber-tabs" role="tablist" aria-label="Evolutionary Pillars">
+            <button class="cyber-tab active" role="tab" aria-selected="true" aria-controls="panel-neural" id="tab-neural">
+              <span class="tab-index">P-01</span>
+              <span class="tab-label">NEURAL INTEGRATION</span>
+              <span class="tab-indicator"></span>
+            </button>
+            <button class="cyber-tab" role="tab" aria-selected="false" aria-controls="panel-musculature" id="tab-musculature">
+              <span class="tab-index">P-02</span>
+              <span class="tab-label">SYNTHETIC MYOMER</span>
+              <span class="tab-indicator"></span>
+            </button>
+            <button class="cyber-tab" role="tab" aria-selected="false" aria-controls="panel-core" id="tab-core">
+              <span class="tab-index">P-03</span>
+              <span class="tab-label">QUANTUM BIO-FUSION</span>
+              <span class="tab-indicator"></span>
+            </button>
+          </div>
+
+          <!-- Tab Content Panels -->
+          <div class="tab-panels-wrapper">
+            <!-- Panel 1: Neural -->
+            <div class="tab-panel active" id="panel-neural" role="tabpanel" aria-labelledby="tab-neural">
+              <div class="panel-grid">
+                <div class="panel-details">
+                  <div class="panel-badge"><i class="fa-solid fa-network-wired"></i> SYNAPTIC DIRECT LINK</div>
+                  <h3 class="panel-title">Direct Cerebral Cortex Mesh with Zero Rejection</h3>
+                  <p class="panel-text">
+                    By weaving biocompatible graphene-silk electrodes directly through neural pathways, our system achieves lossless bidirectional thought conduction. Signals bypass biological nerve velocities, propagating at light speed across optical neural bridges.
+                  </p>
+                  <ul class="panel-spec-list">
+                    <li><i class="fa-solid fa-check-double"></i> <span><strong>Bandwidth:</strong> 10 Terabits/sec direct cerebral throughput</span></li>
+                    <li><i class="fa-solid fa-check-double"></i> <span><strong>Latency:</strong> Less than 0.08 milliseconds brain-to-interface</span></li>
+                    <li><i class="fa-solid fa-check-double"></i> <span><strong>Biocompatibility:</strong> 99.999% inert titanium-platinum weave</span></li>
+                  </ul>
+                  <div class="panel-action">
+                    <a href="#neural-tech" class="btn btn-cyber-cyan btn-sm">VIEW ANATOMY SPECS</a>
+                  </div>
+                </div>
+                <div class="panel-visual">
+                  <div class="glass-visual-card">
+                    <div class="gvc-header">
+                      <span>TELEMETRY: SYNAPSE CLUSTER ALPHA</span>
+                      <span class="gvc-status">ONLINE</span>
+                    </div>
+                    <div class="signal-wave-box">
+                      <svg viewBox="0 0 400 120" class="signal-svg" preserveAspectRatio="none">
+                        <path class="signal-line wave-cyan" d="M0,60 Q25,10 50,60 T100,60 T150,20 T200,90 T250,30 T300,60 T350,15 T400,60" />
+                        <path class="signal-line wave-purple" d="M0,60 Q35,80 70,60 T140,40 T210,80 T280,20 T350,70 T400,60" />
+                      </svg>
+                      <div class="signal-sweep"></div>
+                    </div>
+                    <div class="gvc-footer">
+                      <div class="stat-mini">
+                        <span class="sm-lbl">IMPULSE RATE</span>
+                        <span class="sm-val">2.84 GHz</span>
+                      </div>
+                      <div class="stat-mini">
+                        <span class="sm-lbl">INTEGRITY</span>
+                        <span class="sm-val">100%</span>
+                      </div>
+                      <div class="stat-mini">
+                        <span class="sm-lbl">ERROR FLUX</span>
+                        <span class="sm-val">0.0001%</span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Panel 2: Musculature -->
+            <div class="tab-panel" id="panel-musculature" role="tabpanel" aria-labelledby="tab-musculature" hidden>
+              <div class="panel-grid">
+                <div class="panel-details">
+                  <div class="panel-badge"><i class="fa-solid fa-dumbbell"></i> HIGH-DENSITY MYOMER</div>
+                  <h3 class="panel-title">Carbon Nanotube Artificial Actuation Fibers</h3>
+                  <p class="panel-text">
+                    Replacing vulnerable biological muscle groups with wound electro-active polymer bundles. Our synthetic musculature generates up to 12 times greater tensile strength while maintaining microscopic precision for delicate operations.
+                  </p>
+                  <ul class="panel-spec-list">
+                    <li><i class="fa-solid fa-check-double"></i> <span><strong>Tensile Rating:</strong> 12.4 kN peak hydraulic torque</span></li>
+                    <li><i class="fa-solid fa-check-double"></i> <span><strong>Fatigue Coefficient:</strong> Zero cellular degradation over 50 years</span></li>
+                    <li><i class="fa-solid fa-check-double"></i> <span><strong>Reaction Speed:</strong> 4x faster than human motor neuron reflexes</span></li>
+                  </ul>
+                  <div class="panel-action">
+                    <a href="#features" class="btn btn-cyber-cyan btn-sm">EXPLORE ROBOTICS</a>
+                  </div>
+                </div>
+                <div class="panel-visual">
+                  <div class="glass-visual-card">
+                    <div class="gvc-header">
+                      <span>ACTUATOR COIL // DIAGNOSTIC</span>
+                      <span class="gvc-status">CHARGED</span>
+                    </div>
+                    <div class="actuator-meter-box">
+                      <div class="meter-bar-group">
+                        <div class="mb-label">FIBER BUNDLE A-1</div>
+                        <div class="cyber-progress-bar"><div class="cpb-fill" style="width: 94%"></div></div>
+                      </div>
+                      <div class="meter-bar-group">
+                        <div class="mb-label">HYDRAULIC PRESSURE</div>
+                        <div class="cyber-progress-bar"><div class="cpb-fill cpb-purple" style="width: 88%"></div></div>
+                      </div>
+                      <div class="meter-bar-group">
+                        <div class="mb-label">THERMAL STABILITY</div>
+                        <div class="cyber-progress-bar"><div class="cpb-fill" style="width: 98%"></div></div>
+                      </div>
+                    </div>
+                    <div class="gvc-footer">
+                      <div class="stat-mini"><span class="sm-lbl">TEMP</span><span class="sm-val">34.2 °C</span></div>
+                      <div class="stat-mini"><span class="sm-lbl">TORQUE</span><span class="sm-val">980 N·m</span></div>
+                      <div class="stat-mini"><span class="sm-lbl">FIBERS</span><span class="sm-val">1.2M</span></div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Panel 3: Core -->
+            <div class="tab-panel" id="panel-core" role="tabpanel" aria-labelledby="tab-core" hidden>
+              <div class="panel-grid">
+                <div class="panel-details">
+                  <div class="panel-badge"><i class="fa-solid fa-atom"></i> BIO-THERMAL FUSION</div>
+                  <h3 class="panel-title">Self-Sustaining Sub-Dermal Micro Reactor</h3>
+                  <p class="panel-text">
+                    Harvesting ambient glucose, body heat, and quantum zero-point fluctuations into a steady 500-watt continuous power stream. Never requires recharging, running indefinitely alongside the human host.
+                  </p>
+                  <ul class="panel-spec-list">
+                    <li><i class="fa-solid fa-check-double"></i> <span><strong>Operational Lifespan:</strong> 120+ years perpetual output</span></li>
+                    <li><i class="fa-solid fa-check-double"></i> <span><strong>Output Voltage:</strong> Adaptive 12V-48V smart bus</span></li>
+                    <li><i class="fa-solid fa-check-double"></i> <span><strong>Containment:</strong> Dual-layer magnetic diamond-glass shielding</span></li>
+                  </ul>
+                  <div class="panel-action">
+                    <a href="#suites" class="btn btn-cyber-cyan btn-sm">EXPLORE SUITES</a>
+                  </div>
+                </div>
+                <div class="panel-visual">
+                  <div class="glass-visual-card">
+                    <div class="gvc-header">
+                      <span>POWER BUS: GENERATOR HARNESS</span>
+                      <span class="gvc-status">STABLE</span>
+                    </div>
+                    <div class="core-visualizer">
+                      <div class="core-spinning-ring ring-1"></div>
+                      <div class="core-spinning-ring ring-2"></div>
+                      <div class="core-energy-center"></div>
+                    </div>
+                    <div class="gvc-footer">
+                      <div class="stat-mini"><span class="sm-lbl">WATTS</span><span class="sm-val">520 W</span></div>
+                      <div class="stat-mini"><span class="sm-lbl">EFFICIENCY</span><span class="sm-val">99.8%</span></div>
+                      <div class="stat-mini"><span class="sm-lbl">RESERVE</span><span class="sm-val">100%</span></div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Section 4: AI & Robotics Features -->
+    <section class="section features-section" id="features">
+      <div class="container">
+        <div class="section-header text-center reveal-on-scroll">
+          <div class="section-tag"><i class="fa-solid fa-microchip"></i> 02 // COGNITIVE ARCHITECTURE</div>
+          <h2 class="section-title">AI & ROBOTICS ECOSYSTEM</h2>
+          <p class="section-subtitle">
+            Engineered with deep learning co-processors, self-assembling nanite swarms, and decentralized autonomous sub-systems.
+          </p>
+        </div>
+
+        <div class="features-grid">
+          <!-- Card 1 -->
+          <div class="cyber-feature-card reveal-on-scroll" data-tilt>
+            <div class="card-glow-edge"></div>
+            <div class="cfc-inner">
+              <div class="cfc-icon-box">
+                <i class="fa-solid fa-brain"></i>
+                <span class="icon-ring"></span>
+              </div>
+              <div class="cfc-number">SYS.01</div>
+              <h3 class="cfc-title">Cognitive Co-Processing</h3>
+              <p class="cfc-desc">
+                An integrated sub-neural AI that predicts motor intent, processes complex multi-spectral environmental data, and calculates trajectories in real-time.
+              </p>
+              <div class="cfc-specs">
+                <span class="spec-tag">14.8 TFLOPS</span>
+                <span class="spec-tag">0.05ms PRED</span>
+              </div>
+            </div>
+            <div class="cfc-corner tl"></div>
+            <div class="cfc-corner br"></div>
+          </div>
+
+          <!-- Card 2 -->
+          <div class="cyber-feature-card reveal-on-scroll" data-tilt>
+            <div class="card-glow-edge"></div>
+            <div class="cfc-inner">
+              <div class="cfc-icon-box">
+                <i class="fa-solid fa-shield-halved"></i>
+                <span class="icon-ring"></span>
+              </div>
+              <div class="cfc-number">SYS.02</div>
+              <h3 class="cfc-title">Nanite Cellular Repair</h3>
+              <p class="cfc-desc">
+                Trillions of sub-microscopic nanobots circulating through the vascular network, instantly sealing lacerations and neutralizing toxins within seconds.
+              </p>
+              <div class="cfc-specs">
+                <span class="spec-tag">3.4M UNITS/μL</span>
+                <span class="spec-tag">RAPID HEMOSTASIS</span>
+              </div>
+            </div>
+            <div class="cfc-corner tl"></div>
+            <div class="cfc-corner br"></div>
+          </div>
+
+          <!-- Card 3 -->
+          <div class="cyber-feature-card reveal-on-scroll" data-tilt>
+            <div class="card-glow-edge"></div>
+            <div class="cfc-inner">
+              <div class="cfc-icon-box">
+                <i class="fa-solid fa-eye"></i>
+                <span class="icon-ring"></span>
+              </div>
+              <div class="cfc-number">SYS.03</div>
+              <h3 class="cfc-title">Multi-Spectral Ocular HUD</h3>
+              <p class="cfc-desc">
+                Bionic retinal implants capable of seamless switching between thermal infrared, ultraviolet, LiDAR point-cloud mapping, and 120x optical zoom.
+              </p>
+              <div class="cfc-specs">
+                <span class="spec-tag">380nm - 14μm</span>
+                <span class="spec-tag">240Hz RETINEX</span>
+              </div>
+            </div>
+            <div class="cfc-corner tl"></div>
+            <div class="cfc-corner br"></div>
+          </div>
+
+          <!-- Card 4 -->
+          <div class="cyber-feature-card reveal-on-scroll" data-tilt>
+            <div class="card-glow-edge"></div>
+            <div class="cfc-inner">
+              <div class="cfc-icon-box">
+                <i class="fa-solid fa-lock"></i>
+                <span class="icon-ring"></span>
+              </div>
+              <div class="cfc-number">SYS.04</div>
+              <h3 class="cfc-title">Quantum Cryptographic Shield</h3>
+              <p class="cfc-desc">
+                Lattice-based post-quantum encryption isolates human thoughts and motor controllers from cybernetic warfare, unauthorized telemetry, and signal spoofing.
+              </p>
+              <div class="cfc-specs">
+                <span class="spec-tag">AES-Q512</span>
+                <span class="spec-tag">ZERO EXPLOITS</span>
+              </div>
+            </div>
+            <div class="cfc-corner tl"></div>
+            <div class="cfc-corner br"></div>
+          </div>
+
+          <!-- Card 5 -->
+          <div class="cyber-feature-card reveal-on-scroll" data-tilt>
+            <div class="card-glow-edge"></div>
+            <div class="cfc-inner">
+              <div class="cfc-icon-box">
+                <i class="fa-solid fa-bolt-lightning"></i>
+                <span class="icon-ring"></span>
+              </div>
+              <div class="cfc-number">SYS.05</div>
+              <h3 class="cfc-title">Zero-Latency Spinal Bus</h3>
+              <p class="cfc-desc">
+                A parallel spinal column conduit composed of superconducting metamaterials, accelerating reflex impulses 300 times faster than human nerve tissue.
+              </p>
+              <div class="cfc-specs">
+                <span class="spec-tag">0.08ms CONDUCTION</span>
+                <span class="spec-tag">64-CHANNEL BUS</span>
+              </div>
+            </div>
+            <div class="cfc-corner tl"></div>
+            <div class="cfc-corner br"></div>
+          </div>
+
+          <!-- Card 6 -->
+          <div class="cyber-feature-card reveal-on-scroll" data-tilt>
+            <div class="card-glow-edge"></div>
+            <div class="cfc-inner">
+              <div class="cfc-icon-box">
+                <i class="fa-solid fa-satellite"></i>
+                <span class="icon-ring"></span>
+              </div>
+              <div class="cfc-number">SYS.06</div>
+              <h3 class="cfc-title">Orbital Cloud Telepathy</h3>
+              <p class="cfc-desc">
+                Direct sensory and thought exchange between synchronized cyborg nodes across low-earth satellite constellations, enabling instantaneous global telepathy.
+              </p>
+              <div class="cfc-specs">
+                <span class="spec-tag">MESH NETWORK</span>
+                <span class="spec-tag">GLOBAL ROAMING</span>
+              </div>
+            </div>
+            <div class="cfc-corner tl"></div>
+            <div class="cfc-corner br"></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Section 5: Human Augmentation & Neural Technology -->
+    <section class="section neural-section" id="neural-tech">
+      <div class="container">
+        <div class="section-header text-center reveal-on-scroll">
+          <div class="section-tag"><i class="fa-solid fa-atom"></i> 03 // ANATOMY OF TOMORROW</div>
+          <h2 class="section-title">AUGMENTATION BLUEPRINT</h2>
+          <p class="section-subtitle">
+            Interact with the schematic hotspots below to inspect individual cybernetic implants, power channels, and specifications.
+          </p>
+        </div>
+
+        <div class="blueprint-workbench reveal-on-scroll">
+          <!-- Left: Interactive Blueprint Display -->
+          <div class="blueprint-viewport">
+            <div class="viewport-hud-header">
+              <span class="vhh-title"><i class="fa-solid fa-crosshairs"></i> SCANNER SCHEMATIC // MODEL: OMEGA-CYBORG</span>
+              <span class="vhh-zoom">GRID: 0.1mm // LIVE SENSORS</span>
+            </div>
+
+            <div class="blueprint-stage">
+              <!-- Grid background -->
+              <div class="blueprint-grid-lines" aria-hidden="true"></div>
+              
+              <!-- Humanoid Cyborg SVG Graphic with Hotspots -->
+              <div class="blueprint-graphic-wrapper">
+                <svg viewBox="0 0 400 650" class="blueprint-humanoid-svg" aria-label="Humanoid Cyborg Blueprint">
+                  <!-- Torso & Body Outlines -->
+                  <g class="bp-chassis-outline">
+                    <!-- Head -->
+                    <ellipse cx="200" cy="75" rx="35" ry="45" class="bp-part" />
+                    <!-- Neck -->
+                    <path d="M185,115 L215,115 L218,135 L182,135 Z" class="bp-part" />
+                    <!-- Shoulders -->
+                    <path d="M130,145 L182,135 L218,135 L270,145 L255,180 L145,180 Z" class="bp-part" />
+                    <!-- Chest -->
+                    <path d="M145,180 L255,180 L245,260 L155,260 Z" class="bp-part" />
+                    <!-- Spinal Conduit -->
+                    <line x1="200" y1="120" x2="200" y2="350" class="bp-spine-line" />
+                    <!-- Spine Nodes -->
+                    <circle cx="200" cy="150" r="4" class="bp-spine-node" />
+                    <circle cx="200" cy="190" r="4" class="bp-spine-node" />
+                    <circle cx="200" cy="230" r="4" class="bp-spine-node" />
+                    <circle cx="200" cy="270" r="4" class="bp-spine-node" />
+                    <circle cx="200" cy="310" r="4" class="bp-spine-node" />
+                    <!-- Abdomen & Pelvis -->
+                    <path d="M155,260 L245,260 L235,340 L165,340 Z" class="bp-part" />
+                    <!-- Left Arm (Viewer's left) -->
+                    <path d="M130,145 L115,230 L105,320 L95,380" class="bp-limb-line" />
+                    <!-- Right Arm (Viewer's right) -->
+                    <path d="M270,145 L285,230 L295,320 L305,380" class="bp-limb-line" />
+                    <!-- Left Leg -->
+                    <path d="M175,340 L165,460 L155,580 L140,630" class="bp-limb-line" />
+                    <!-- Right Leg -->
+                    <path d="M225,340 L235,460 L245,580 L260,630" class="bp-limb-line" />
+                    <!-- Core Glow Circle -->
+                    <circle cx="200" cy="220" r="22" class="bp-core-reactor" />
+                  </g>
+                </svg>
+
+                <!-- Interactive Hotspots (Pulsing Target Nodes) -->
+                <!-- 1. Ocular Matrix -->
+                <button type="button" class="blueprint-pin active" style="top: 10%; left: 50%;" data-zone="ocular" aria-label="Inspect Ocular Matrix">
+                  <span class="pin-ring"></span>
+                  <span class="pin-dot"></span>
+                  <span class="pin-tag">01 // OPTICS</span>
+                </button>
+
+                <!-- 2. Neural Cortex Mesh -->
+                <button type="button" class="blueprint-pin" style="top: 6%; left: 38%;" data-zone="cortex" aria-label="Inspect Neural Cortex">
+                  <span class="pin-ring"></span>
+                  <span class="pin-dot"></span>
+                  <span class="pin-tag">02 // CORTEX</span>
+                </button>
+
+                <!-- 3. Bio-Reactor Heart -->
+                <button type="button" class="blueprint-pin" style="top: 34%; left: 50%;" data-zone="core" aria-label="Inspect Fusion Core">
+                  <span class="pin-ring"></span>
+                  <span class="pin-dot"></span>
+                  <span class="pin-tag">03 // POWER CORE</span>
+                </button>
+
+                <!-- 4. Titanium-Graphene Spine -->
+                <button type="button" class="blueprint-pin" style="top: 45%; left: 56%;" data-zone="spine" aria-label="Inspect Superconducting Spine">
+                  <span class="pin-ring"></span>
+                  <span class="pin-dot"></span>
+                  <span class="pin-tag">04 // SPINAL BUS</span>
+                </button>
+
+                <!-- 5. Bionic Manipulator Limbs -->
+                <button type="button" class="blueprint-pin" style="top: 52%; left: 24%;" data-zone="limbs" aria-label="Inspect Carbon Actuators">
+                  <span class="pin-ring"></span>
+                  <span class="pin-dot"></span>
+                  <span class="pin-tag">05 // MYOMER ARMS</span>
+                </button>
+
+                <!-- 6. Hydraulic Kinetic Stems -->
+                <button type="button" class="blueprint-pin" style="top: 80%; left: 63%;" data-zone="legs" aria-label="Inspect Kinetic Dampeners">
+                  <span class="pin-ring"></span>
+                  <span class="pin-dot"></span>
+                  <span class="pin-tag">06 // KINETIC LEGS</span>
+                </button>
+              </div>
+            </div>
+
+            <!-- Viewport Footer instructions -->
+            <div class="viewport-hud-footer">
+              <span><i class="fa-solid fa-hand-pointer"></i> CLICK ANY NODE TO RUN SCHEMATIC DIAGNOSTICS</span>
+            </div>
+          </div>
+
+          <!-- Right: Live Diagnostic Telemetry Console -->
+          <div class="blueprint-telemetry">
+            <div class="console-box">
+              <div class="console-header">
+                <div class="ch-left">
+                  <span class="console-led"></span>
+                  <span class="console-title" id="diag-zone-title">ZONE 01: OCULAR NEURO-RETINEX</span>
+                </div>
+                <div class="ch-status">DIAGNOSTIC: ACTIVE</div>
+              </div>
+
+              <div class="console-body">
+                <div class="diag-meta-grid">
+                  <div class="dm-item">
+                    <span class="dm-label">MODULE CODE</span>
+                    <span class="dm-val" id="diag-code">OCU-808-X</span>
+                  </div>
+                  <div class="dm-item">
+                    <span class="dm-label">STATUS</span>
+                    <span class="dm-val text-cyan" id="diag-status">CALIBRATED</span>
+                  </div>
+                  <div class="dm-item">
+                    <span class="dm-label">POWER DRAW</span>
+                    <span class="dm-val text-purple" id="diag-power">1.8W CONTINUOUS</span>
+                  </div>
+                  <div class="dm-item">
+                    <span class="dm-label">COMPATIBILITY</span>
+                    <span class="dm-val" id="diag-compat">99.998% GRADE-A</span>
+                  </div>
+                </div>
+
+                <div class="diag-description-block">
+                  <h4 class="diag-heading" id="diag-heading">Multi-Spectrum Optic Synthesizer</h4>
+                  <p class="diag-text" id="diag-desc">
+                    Replaces human organic optical sensors with quad-layer quantum dot synthetic retinas. Grants 240 FPS visual ingestion, automatic anti-glare polarization, night-vision amplification, and real-time facial threat recognition.
+                  </p>
+                </div>
+
+                <!-- Dynamic Real-Time Bars -->
+                <div class="diag-metrics-block">
+                  <div class="dmb-item">
+                    <div class="dmb-header">
+                      <span>SYNC FIDELITY</span>
+                      <span id="diag-bar1-val">99.4%</span>
+                    </div>
+                    <div class="cyber-progress-bar"><div class="cpb-fill" id="diag-bar1" style="width: 99.4%"></div></div>
+                  </div>
+                  <div class="dmb-item">
+                    <div class="dmb-header">
+                      <span>BANDWIDTH LOAD</span>
+                      <span id="diag-bar2-val">42.8 GB/s</span>
+                    </div>
+                    <div class="cyber-progress-bar"><div class="cpb-fill cpb-purple" id="diag-bar2" style="width: 72%"></div></div>
+                  </div>
+                </div>
+
+                <!-- Terminal Log Feed -->
+                <div class="terminal-log-feed">
+                  <div class="log-line"><span class="log-time">[18:34:01]</span> <span class="log-msg">Sub-system ping OK (0.02ms)</span></div>
+                  <div class="log-line"><span class="log-time">[18:34:02]</span> <span class="log-msg text-cyan">Neural handshake token: 0x9F4C2A valid</span></div>
+                  <div class="log-line"><span class="log-time">[18:34:03]</span> <span class="log-msg text-purple" id="diag-log">Telemetry stream locked to satellite uplink</span></div>
+                </div>
+
+                <div class="console-actions">
+                  <button type="button" class="btn btn-cyber-primary btn-sm" id="btn-run-diag">
+                    <i class="fa-solid fa-arrows-rotate"></i> RE-CALIBRATE NODE
+                  </button>
+                  <button type="button" class="btn btn-cyber-glass btn-sm" id="btn-export-telemetry">
+                    <i class="fa-solid fa-file-code"></i> EXPORT TELEMETRY
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Section 6: Technology Statistics -->
+    <section class="section stats-section" id="stats">
+      <div class="container">
+        <div class="section-header text-center reveal-on-scroll">
+          <div class="section-tag"><i class="fa-solid fa-chart-line"></i> 04 // OPERATIONAL METRICS</div>
+          <h2 class="section-title">GLOBAL TELEMETRY BENCHMARKS</h2>
+          <p class="section-subtitle">
+            Measured across thousands of synchronized synthetic hosts operating globally in real-time.
+          </p>
+        </div>
+
+        <div class="stats-counter-grid">
+          <!-- Stat 1 -->
+          <div class="stat-counter-card reveal-on-scroll">
+            <div class="scc-icon"><i class="fa-solid fa-bolt"></i></div>
+            <div class="scc-number-wrapper">
+              <span class="counter-val" data-target="0.08" data-decimals="2">0</span>
+              <span class="counter-unit">ms</span>
+            </div>
+            <div class="scc-title">Synaptic Impulse Latency</div>
+            <p class="scc-desc">Near speed-of-light neural transmission bypassing traditional neuromuscular biological delays.</p>
+          </div>
+
+          <!-- Stat 2 -->
+          <div class="stat-counter-card reveal-on-scroll">
+            <div class="scc-icon"><i class="fa-solid fa-microchip"></i></div>
+            <div class="scc-number-wrapper">
+              <span class="counter-val" data-target="14.8" data-decimals="1">0</span>
+              <span class="counter-unit">TFLOPS</span>
+            </div>
+            <div class="scc-title">Local Neural Compute</div>
+            <p class="scc-desc">Dedicated on-chip edge artificial intelligence powering predictive cognitive analysis.</p>
+          </div>
+
+          <!-- Stat 3 -->
+          <div class="stat-counter-card reveal-on-scroll">
+            <div class="scc-icon"><i class="fa-solid fa-heart-pulse"></i></div>
+            <div class="scc-number-wrapper">
+              <span class="counter-val" data-target="99.999" data-decimals="3">0</span>
+              <span class="counter-unit">%</span>
+            </div>
+            <div class="scc-title">Biocompatibility Rating</div>
+            <p class="scc-desc">Complete rejection immunity backed by bio-inert titanium-diamond lattice shielding.</p>
+          </div>
+
+          <!-- Stat 4 -->
+          <div class="stat-counter-card reveal-on-scroll">
+            <div class="scc-icon"><i class="fa-solid fa-users-viewfinder"></i></div>
+            <div class="scc-number-wrapper">
+              <span class="counter-val" data-target="4250" data-decimals="0">0</span>
+              <span class="counter-unit">+</span>
+            </div>
+            <div class="scc-title">Augmentations Deployed</div>
+            <p class="scc-desc">Active operatives and enhanced citizens operational worldwide with 100% uptime.</p>
+          </div>
+        </div>
+
+        <!-- Secondary Live Chart Widget -->
+        <div class="live-chart-bar-container reveal-on-scroll">
+          <div class="chart-header">
+            <div class="ch-info">
+              <i class="fa-solid fa-wave-square"></i>
+              <span>DYNAMIC COGNITIVE BANDWIDTH OVER TIME (LAST 24 HOURS)</span>
+            </div>
+            <div class="ch-badge">LIVE METRICS FEED</div>
+          </div>
+          <div class="mock-chart-visual">
+            <div class="chart-col" style="--height: 45%" data-val="45%"><span class="chart-tip">02:00</span></div>
+            <div class="chart-col" style="--height: 60%" data-val="60%"><span class="chart-tip">05:00</span></div>
+            <div class="chart-col" style="--height: 75%" data-val="75%"><span class="chart-tip">08:00</span></div>
+            <div class="chart-col" style="--height: 90%" data-val="90%"><span class="chart-tip">11:00</span></div>
+            <div class="chart-col" style="--height: 82%" data-val="82%"><span class="chart-tip">14:00</span></div>
+            <div class="chart-col active-pulse" style="--height: 98%" data-val="98%"><span class="chart-tip">17:00</span></div>
+            <div class="chart-col" style="--height: 88%" data-val="88%"><span class="chart-tip">20:00</span></div>
+            <div class="chart-col" style="--height: 70%" data-val="70%"><span class="chart-tip">23:00</span></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Section 7: Interactive Futuristic Cards -->
+    <section class="section suites-section" id="suites">
+      <div class="container">
+        <div class="section-header text-center reveal-on-scroll">
+          <div class="section-tag"><i class="fa-solid fa-layer-group"></i> 05 // AUGMENTATION SUITES</div>
+          <h2 class="section-title">CYBERNETIC SERIES CONFIGURATIONS</h2>
+          <p class="section-subtitle">
+            Choose your transcendence level. Each series is fully tailored, modular, and upgradeable through quantum over-the-air firmware.
+          </p>
+        </div>
+
+        <div class="suites-grid">
+          <!-- Card 1: Neural Operator -->
+          <div class="suite-card reveal-on-scroll" data-tilt>
+            <div class="sc-badge">SERIES ALPHA</div>
+            <div class="sc-header">
+              <h3 class="sc-title">Neural Operator</h3>
+              <p class="sc-subtitle">Cognitive Uplink & Sensory Precision</p>
+              <div class="sc-price">
+                <span class="sc-currency">$</span>
+                <span class="sc-amt">49,000</span>
+                <span class="sc-period">/ INTEGRATION</span>
+              </div>
+            </div>
+
+            <div class="sc-divider"></div>
+
+            <ul class="sc-features">
+              <li><i class="fa-solid fa-check text-cyan"></i> Quad-Core Neural Cortex Mesh</li>
+              <li><i class="fa-solid fa-check text-cyan"></i> Bionic Dual-Spectrum Ocular HUD</li>
+              <li><i class="fa-solid fa-check text-cyan"></i> Direct High-Speed Cloud Telepathy</li>
+              <li><i class="fa-solid fa-check text-cyan"></i> Post-Quantum Cryptographic Shield</li>
+              <li class="disabled"><i class="fa-solid fa-xmark"></i> Sub-Dermal Micro Fusion Reactor</li>
+              <li class="disabled"><i class="fa-solid fa-xmark"></i> Carbon Nanotube Combat Myomer</li>
+            </ul>
+
+            <div class="sc-action">
+              <button type="button" class="btn btn-cyber-outline w-100 suite-select-btn" data-plan="Neural Operator" data-price="$49,000">
+                <span>SELECT CONFIGURATION</span>
+              </button>
+            </div>
+          </div>
+
+          <!-- Card 2: Chrono Vanguard (Featured) -->
+          <div class="suite-card featured reveal-on-scroll" data-tilt>
+            <div class="featured-glow-pill">MOST POPULAR UPGRADE</div>
+            <div class="sc-badge sc-badge-cyan">SERIES APEX</div>
+            <div class="sc-header">
+              <h3 class="sc-title">Chrono Vanguard</h3>
+              <p class="sc-subtitle">Full-Spectrum Physical & Neural Mastery</p>
+              <div class="sc-price">
+                <span class="sc-currency">$</span>
+                <span class="sc-amt">119,000</span>
+                <span class="sc-period">/ INTEGRATION</span>
+              </div>
+            </div>
+
+            <div class="sc-divider"></div>
+
+            <ul class="sc-features">
+              <li><i class="fa-solid fa-check text-cyan"></i> Octa-Core Quantum Neural Lattice</li>
+              <li><i class="fa-solid fa-check text-cyan"></i> Full-Body Carbon Myomer Actuators (12 kN)</li>
+              <li><i class="fa-solid fa-check text-cyan"></i> Nanite Rapid Cellular Regeneration</li>
+              <li><i class="fa-solid fa-check text-cyan"></i> Sub-Millisecond Superconducting Spine</li>
+              <li><i class="fa-solid fa-check text-cyan"></i> Micro-Fusion 500W Perpetual Core</li>
+              <li class="disabled"><i class="fa-solid fa-xmark"></i> Full Biological Consciousness Migration</li>
+            </ul>
+
+            <div class="sc-action">
+              <button type="button" class="btn btn-cyber-primary w-100 suite-select-btn" data-plan="Chrono Vanguard" data-price="$119,000">
+                <span class="btn-text">INITIALIZE APEX SUITE</span>
+              </button>
+            </div>
+          </div>
+
+          <!-- Card 3: Quantum Singularity -->
+          <div class="suite-card reveal-on-scroll" data-tilt>
+            <div class="sc-badge sc-badge-purple">SERIES OMEGA</div>
+            <div class="sc-header">
+              <h3 class="sc-title">Singularity Hybrid</h3>
+              <p class="sc-subtitle">Total Post-Biological Transcendence</p>
+              <div class="sc-price">
+                <span class="sc-currency">$</span>
+                <span class="sc-amt">275,000</span>
+                <span class="sc-period">/ INTEGRATION</span>
+              </div>
+            </div>
+
+            <div class="sc-divider"></div>
+
+            <ul class="sc-features">
+              <li><i class="fa-solid fa-check text-cyan"></i> 100% Consciousness Transfer Protocol</li>
+              <li><i class="fa-solid fa-check text-cyan"></i> Diamond-Graphene Ballistic Exoskeleton</li>
+              <li><i class="fa-solid fa-check text-cyan"></i> Zero-Point Energy Quantum Core</li>
+              <li><i class="fa-solid fa-check text-cyan"></i> Multi-Dimensional Sensory Array</li>
+              <li><i class="fa-solid fa-check text-cyan"></i> Autonomous Orbital Redundancy Backup</li>
+              <li><i class="fa-solid fa-check text-cyan"></i> Indefinite Cellular & Synthetic Longevity</li>
+            </ul>
+
+            <div class="sc-action">
+              <button type="button" class="btn btn-cyber-outline w-100 suite-select-btn" data-plan="Singularity Hybrid" data-price="$275,000">
+                <span>SELECT CONFIGURATION</span>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Section 8: Contact & Futuristic Footer -->
+    <section class="section contact-section" id="contact">
+      <div class="container">
+        <div class="section-header text-center reveal-on-scroll">
+          <div class="section-tag"><i class="fa-solid fa-terminal"></i> 06 // ENCRYPTED TRANSMISSION</div>
+          <h2 class="section-title">ESTABLISH SECURE UPLINK</h2>
+          <p class="section-subtitle">
+            Submit your integration request to our bio-cybernetic intake division. All transmissions are protected with quantum lattice cipher.
+          </p>
+        </div>
+
+        <div class="terminal-contact-container reveal-on-scroll">
+          <div class="terminal-window">
+            <!-- Terminal Header -->
+            <div class="tw-header">
+              <div class="tw-dots">
+                <span class="dot dot-red"></span>
+                <span class="dot dot-yellow"></span>
+                <span class="dot dot-green"></span>
+              </div>
+              <div class="tw-title"><i class="fa-solid fa-shield-halved"></i> CYBORG_COMMAND_INTERFACE v4.8 // SECURE CHANNEL</div>
+              <div class="tw-coords">LAT: 35.6762° N / LON: 139.6503° E</div>
+            </div>
+
+            <!-- Terminal Form Body -->
+            <div class="tw-body">
+              <form id="cyber-contact-form" class="cyber-form" novalidate>
+                <div class="form-row">
+                  <div class="form-group">
+                    <label for="contact-name" class="cyber-label"><i class="fa-solid fa-user-astronaut"></i> OPERATIVE ALIAS / FULL NAME</label>
+                    <div class="input-wrapper">
+                      <input type="text" id="contact-name" name="name" class="cyber-input" placeholder="e.g. Major Motoko Kusanagi" required minlength="3">
+                      <span class="input-focus-border"></span>
+                    </div>
+                    <span class="error-msg" id="name-error">Alias must be at least 3 characters.</span>
+                  </div>
+
+                  <div class="form-group">
+                    <label for="contact-email" class="cyber-label"><i class="fa-solid fa-satellite-dish"></i> COMM FREQUENCY / EMAIL</label>
+                    <div class="input-wrapper">
+                      <input type="email" id="contact-email" name="email" class="cyber-input" placeholder="e.g. operative@cyborg-future.io" required>
+                      <span class="input-focus-border"></span>
+                    </div>
+                    <span class="error-msg" id="email-error">Please provide a valid comm frequency (email).</span>
+                  </div>
+                </div>
+
+                <div class="form-row">
+                  <div class="form-group">
+                    <label for="contact-suite" class="cyber-label"><i class="fa-solid fa-microchip"></i> TARGET AUGMENTATION SUITE</label>
+                    <div class="input-wrapper select-wrapper">
+                      <select id="contact-suite" name="suite" class="cyber-input cyber-select">
+                        <option value="Apex">Series Apex: Chrono Vanguard (Recommended)</option>
+                        <option value="Alpha">Series Alpha: Neural Operator</option>
+                        <option value="Omega">Series Omega: Singularity Hybrid</option>
+                        <option value="Custom">Custom Neuro-Somatic Architecture</option>
+                      </select>
+                      <span class="select-chevron"><i class="fa-solid fa-chevron-down"></i></span>
+                    </div>
+                  </div>
+
+                  <div class="form-group">
+                    <label for="contact-priority" class="cyber-label"><i class="fa-solid fa-clock-rotate-left"></i> INTEGRATION TIMELINE</label>
+                    <div class="input-wrapper select-wrapper">
+                      <select id="contact-priority" name="priority" class="cyber-input cyber-select">
+                        <option value="Standard">Standard Intake (Within 30 Days)</option>
+                        <option value="Priority">Priority Protocol (Within 7 Days)</option>
+                        <option value="Immediate">Immediate Tactical Deploy (48 Hours)</option>
+                      </select>
+                      <span class="select-chevron"><i class="fa-solid fa-chevron-down"></i></span>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="form-group">
+                  <label for="contact-message" class="cyber-label"><i class="fa-solid fa-comment-dots"></i> TRANSMISSION DIRECTIVE / NOTES</label>
+                  <div class="input-wrapper">
+                    <textarea id="contact-message" name="message" class="cyber-input cyber-textarea" rows="4" placeholder="Detail your biological requirements, desired prosthetic replacements, or neural synchronization parameters..." required minlength="10"></textarea>
+                    <span class="input-focus-border"></span>
+                  </div>
+                  <span class="error-msg" id="message-error">Transmission directive must contain at least 10 characters.</span>
+                </div>
+
+                <!-- Live transmission feedback banner -->
+                <div class="form-feedback-banner" id="form-feedback" aria-live="polite">
+                  <div class="fb-spinner"><i class="fa-solid fa-circle-notch fa-spin"></i></div>
+                  <div class="fb-text">ENCRYPTING TRANSMISSION PACKETS...</div>
+                </div>
+
+                <div class="form-footer">
+                  <div class="terminal-security-note">
+                    <i class="fa-solid fa-key"></i> ENCRYPTION: SHA-512 // ZERO LOG POLICY
+                  </div>
+                  <button type="submit" class="btn btn-cyber-primary" id="btn-submit-form">
+                    <span class="btn-icon"><i class="fa-solid fa-paper-plane"></i></span>
+                    <span class="btn-text">TRANSMIT PACKET</span>
+                    <span class="btn-glare"></span>
+                    <span class="corner corner-tl"></span>
+                    <span class="corner corner-br"></span>
+                  </button>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- Futuristic Footer -->
+  <footer class="cyber-footer">
+    <div class="footer-top-line" aria-hidden="true"></div>
+    <div class="container footer-container">
+      <div class="footer-col brand-col">
+        <div class="footer-logo">
+          <svg viewBox="0 0 40 40" class="footer-svg" aria-hidden="true">
+            <polygon points="20,2 38,12 38,28 20,38 2,28 2,12" class="hex-outer" />
+            <circle cx="20" cy="20" r="5" class="core-glow" />
+          </svg>
+          <span class="footer-brand-title">CYBORG</span>
+        </div>
+        <p class="footer-tagline">
+          The Future of Humanity. Pioneer of synthetic biological integration, quantum cerebral interfaces, and artificial neural cognition.
+        </p>
+        <div class="footer-sys-status">
+          <span class="status-indicator-dot"></span>
+          <span>MAIN CORE STATUS: NOMINAL (99.999% UP)</span>
+        </div>
+      </div>
+
+      <div class="footer-col">
+        <h4 class="footer-heading">NAVIGATION</h4>
+        <ul class="footer-links">
+          <li><a href="#hero">Overview</a></li>
+          <li><a href="#about">The Genesis</a></li>
+          <li><a href="#features">AI & Robotics</a></li>
+          <li><a href="#neural-tech">Neural Anatomy</a></li>
+          <li><a href="#stats">Telemetry</a></li>
+          <li><a href="#suites">Augmentation Suites</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-col">
+        <h4 class="footer-heading">NEURAL PROTOCOLS</h4>
+        <ul class="footer-links">
+          <li><a href="#about">Bio-Synthetic Ethics</a></li>
+          <li><a href="#features">Quantum Encryption</a></li>
+          <li><a href="#neural-tech">Rejection Immunity</a></li>
+          <li><a href="#stats">Global Telemetry</a></li>
+          <li><a href="#contact">Emergency Synapse Reset</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-col">
+        <h4 class="footer-heading">COMM NETWORK</h4>
+        <p class="footer-comm-desc">Subscribe to secure quantum broadcast bulletins for firmware releases.</p>
+        <div class="footer-newsletter">
+          <input type="email" placeholder="freq@domain.io" class="newsletter-input" id="news-email" aria-label="Frequency Email">
+          <button type="button" class="btn btn-cyber-cyan btn-sm" id="btn-subscribe" aria-label="Subscribe">
+            <i class="fa-solid fa-arrow-right"></i>
+          </button>
+        </div>
+        <div class="footer-socials">
+          <a href="#" aria-label="GitHub Repository" class="social-icon"><i class="fa-brands fa-github"></i></a>
+          <a href="#" aria-label="Discord Channel" class="social-icon"><i class="fa-brands fa-discord"></i></a>
+          <a href="#" aria-label="X / Twitter" class="social-icon"><i class="fa-brands fa-x-twitter"></i></a>
+          <a href="#" aria-label="Telegram Uplink" class="social-icon"><i class="fa-brands fa-telegram"></i></a>
+        </div>
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      <div class="container footer-bottom-container">
+        <div class="fbc-copy">
+          &copy; 2026 CYBORG TECHNOLOGIES INC. // ALL RIGHTS RESERVED. HOMO TECHNOLOGICUS INITIATIVE.
+        </div>
+        <div class="fbc-location">
+          <span>SECTOR 07 // TOKYO · GENEVA · SAN FRANCISCO</span>
+        </div>
+        <button type="button" class="back-to-top-btn" id="back-to-top" aria-label="Scroll back to top">
+          <i class="fa-solid fa-arrow-up"></i>
+          <span class="sr-only">Top</span>
+        </button>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Interactive Modal: Neural Synchronization Interface -->
+  <div class="cyber-modal" id="sync-modal" role="dialog" aria-modal="true" aria-labelledby="modal-title" hidden>
+    <div class="modal-backdrop" id="modal-backdrop"></div>
+    <div class="modal-window">
+      <div class="modal-header">
+        <div class="mh-left">
+          <i class="fa-solid fa-brain-circuit text-cyan"></i>
+          <h3 class="modal-title" id="modal-title">NEURAL LINK DIAGNOSTIC INITIALIZER</h3>
+        </div>
+        <button type="button" class="modal-close-btn" id="close-sync-modal" aria-label="Close Diagnostic Modal">&times;</button>
+      </div>
+      
+      <div class="modal-body">
+        <p class="modal-intro">
+          Initiate a simulated synthetic calibration with the local quantum co-processor. Verify neural resonance, synaptic bandwidth, and biocompatibility coefficient.
+        </p>
+
+        <div class="sync-simulation-box">
+          <div class="sync-ring-wrapper">
+            <div class="sync-ring outer-ring"></div>
+            <div class="sync-ring inner-ring"></div>
+            <div class="sync-core-val" id="sync-pct">0%</div>
+          </div>
+          <div class="sync-status-msg" id="sync-status-text">SYSTEM STANDBY // READY FOR SYNC</div>
+        </div>
+
+        <div class="sync-progress-details">
+          <div class="spd-item">
+            <span>SYNAPTIC HANDSHAKE:</span>
+            <span class="spd-val" id="spd-handshake">WAITING</span>
+          </div>
+          <div class="spd-item">
+            <span>MEMBRANE POTENTIAL:</span>
+            <span class="spd-val" id="spd-potential">-70 mV</span>
+          </div>
+          <div class="spd-item">
+            <span>QUANTUM COHERENCE:</span>
+            <span class="spd-val" id="spd-coherence">100%</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="modal-footer">
+        <button type="button" class="btn btn-cyber-glass" id="btn-cancel-modal">DISCONNECT</button>
+        <button type="button" class="btn btn-cyber-primary" id="btn-start-sync">
+          <i class="fa-solid fa-play"></i> START SYNCHRONIZATION
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Main JavaScript File -->
+  <script src="script.js"></script>
+</body>
+</html>
+
